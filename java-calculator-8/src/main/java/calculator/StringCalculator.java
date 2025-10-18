@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    private final Pattern customPattern = Pattern.compile("//(.)\n(.*)");
+    private final Pattern customPattern = Pattern.compile("//(.)\\\\n(.*)");
 
     public int calculate(String input) {
         // 1단계 기능: 빈 문자열 또는 null

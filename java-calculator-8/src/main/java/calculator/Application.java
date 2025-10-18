@@ -7,21 +7,12 @@ public class Application {
 
         StringCalculator calculator = new StringCalculator();
 
-        try {
 
-            System.out.println("덧셈할 문자열을 입력해 주세요.");
+        String input = Console.readLine();
 
+        int result = calculator.calculate(input);
 
-            String input = Console.readLine();
-
-            int result = calculator.calculate(input);
-
-            System.out.println("결과 : " + result);
-
-        } catch (IllegalArgumentException e) {
-
-            System.out.println("[오류] " + e.getMessage());
-        }
+        System.out.println("결과 : " + result);
 
     }
 
