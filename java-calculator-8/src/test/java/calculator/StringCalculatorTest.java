@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -120,5 +121,30 @@ public class StringCalculatorTest {
 
         // then (검증)
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("음수가 포함된 문자열을 입력하면 IllegalArgumentException을 발생시킨다.")
+    void negativeNumber_shouldThrowException() {
+        // given (준비)
+        String input = "1,-2,3";
+
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.calculate(input);
+        });
+    }
+
+    @Test
+    @DisplayName("숫자 이외의 문자가 포함된 문자열을 입력하면 IllegalArgumentException을 발생시킨다.") // <- 여기도 수정
+    void invalidCharacter_shouldThrowException() {
+        // given (준비)
+        String input = "1,a,3"; // 'a'는 숫자가 아님
+
+        // when & then (실행 및 검증)
+        // 기대하는 예외를 NumberFormatException -> IllegalArgumentException.class로 변경
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculator.calculate(input);
+        });
     }
 }

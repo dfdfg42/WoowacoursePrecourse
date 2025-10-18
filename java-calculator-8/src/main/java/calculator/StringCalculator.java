@@ -32,7 +32,24 @@ public class StringCalculator {
     private int sum(String[] numbers) {
         int total = 0;
         for (String number : numbers) {
-            total += Integer.parseInt(number);
+            try {
+                // 1. 문자열을 숫자로 변환
+                int parsedNumber = Integer.parseInt(number);
+
+                // 2. 음수인지 검사
+                if (parsedNumber < 0) {
+                    // 음수이면 즉시 예외 발생
+                    throw new IllegalArgumentException("음수는 입력할 수 없습니다.");
+                }
+
+                // 3. 합계에 더하기
+                total += parsedNumber;
+
+            } catch (NumberFormatException e) {
+                // 4. Integer.parseInt()가 실패한 경우 (숫자 이외의 값)
+                // NumberFormatException을 IllegalArgumentException으로 변환하여 발생
+                throw new IllegalArgumentException("유효하지 않은 숫자 형식입니다.", e);
+            }
         }
         return total;
     }
