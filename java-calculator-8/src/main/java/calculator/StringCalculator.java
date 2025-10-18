@@ -8,7 +8,16 @@ public class StringCalculator {
             return 0;
         }
 
+        //2단계 기능: 쉼표(,)를 기준으로 분리 후 합산
+        String[] numbers = input.split(",");
 
-        return 0;
+        int sum = 0;
+        for (String number : numbers) {
+
+            sum += Integer.parseInt(number);
+        }
+
+
+        return sum;
     }
 }

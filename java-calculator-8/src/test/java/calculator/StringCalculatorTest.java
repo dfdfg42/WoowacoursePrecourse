@@ -42,4 +42,31 @@ public class StringCalculatorTest {
         //then(검증)
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("쉼표(,) 구분자가 포함된 문자열의 합을 반환한다.")
+    void commaSeparatedNumbers_shouldReturnSum() {
+        // given (준비)
+        String input = "1,2";
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        // 1 + 2 = 3 이므로 3인지 확인
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("숫자가 하나만 입력될 경우 해당 숫자를 반환한다.")
+    void singleNumber_shouldReturnItself() {
+        // given (준비)
+        String input = "1";
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        assertThat(result).isEqualTo(1);
+    }
 }
