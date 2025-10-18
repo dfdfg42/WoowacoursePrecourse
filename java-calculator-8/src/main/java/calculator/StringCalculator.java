@@ -1,24 +1,39 @@
 package calculator;
 
+// 4단계 기능을 위해 정규표현식(Regex) 관련 클래스를 import 합니다.
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
 
+    private final Pattern customPattern = Pattern.compile("//(.)\n(.*)");
+
     public int calculate(String input) {
-        // 1단계 요구사항: 빈 문자열 또는 null이면 0을 반환한다.
+        // 1단계 기능: 빈 문자열 또는 null
         if (input == null || input.isEmpty()) {
             return 0;
         }
 
-        // 3단계 기능: 쉼표(,) 또는 콜론(:)을 구분자로 사용
-        // 정규표현식을 사용하여 "," 또는 ":"를 기준으로 문자열을 쪼갬
-        String[] numbers = input.split(",|:");
+        // 4단계: 커스텀 구분자 형식인지 확인
+        Matcher matcher = customPattern.matcher(input);
+        if (matcher.find()) {
+            String customSeparator = matcher.group(1); // 그룹 1: 구분자 (";")
+            String numberString = matcher.group(2);   // 그룹 2: 숫자 ("1;2;3")
 
-        int sum = 0;
-        for (String number : numbers) {
 
-            sum += Integer.parseInt(number);
+            return sum(numberString.split(Pattern.quote(customSeparator)));
         }
 
 
-        return sum;
+        String[] numbers = input.split(",|:");
+        return sum(numbers);
+    }
+
+    private int sum(String[] numbers) {
+        int total = 0;
+        for (String number : numbers) {
+            total += Integer.parseInt(number);
+        }
+        return total;
     }
 }

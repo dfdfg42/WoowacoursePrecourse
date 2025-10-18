@@ -95,4 +95,30 @@ public class StringCalculatorTest {
         // then (검증)
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("커스텀 구분자(//와 \n 사이)를 지정하여 합계를 반환한다.")
+    void customSeparator_shouldReturnSum() {
+        // given (준비)
+        String input = "//;\n1;2;3"; // 요구 사항 예시
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("다른 문자(%)를 커스텀 구분자로 지정하여 합계를 반환한다.")
+    void customSeparator_withDifferentSeparator_shouldReturnSum() {
+        // given (준비)
+        String input = "//%\n1%2%3";
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        assertThat(result).isEqualTo(6);
+    }
 }
