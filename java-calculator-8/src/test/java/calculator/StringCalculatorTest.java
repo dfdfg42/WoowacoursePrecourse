@@ -69,4 +69,30 @@ public class StringCalculatorTest {
         // then (검증)
         assertThat(result).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("콜론(:) 구분자가 포함된 문자열의 합을 반환한다.")
+    void colonSeparatedNumbers_shouldReturnSum() {
+        // given (준비)
+        String input = "1:2";
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("쉼표(,)와 콜론(:) 구분자가 혼용된 문자열의 합을 반환한다.")
+    void mixedSeparators_shouldReturnSum() {
+        // given (준비)
+        String input = "1,2:3"; // 요구 사항 예시
+
+        // when (실행)
+        int result = calculator.calculate(input);
+
+        // then (검증)
+        assertThat(result).isEqualTo(6);
+    }
 }

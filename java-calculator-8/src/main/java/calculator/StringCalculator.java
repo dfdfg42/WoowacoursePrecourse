@@ -8,8 +8,9 @@ public class StringCalculator {
             return 0;
         }
 
-        //2단계 기능: 쉼표(,)를 기준으로 분리 후 합산
-        String[] numbers = input.split(",");
+        // 3단계 기능: 쉼표(,) 또는 콜론(:)을 구분자로 사용
+        // 정규표현식을 사용하여 "," 또는 ":"를 기준으로 문자열을 쪼갬
+        String[] numbers = input.split(",|:");
 
         int sum = 0;
         for (String number : numbers) {
