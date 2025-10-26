@@ -3,6 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -37,7 +38,26 @@ public class Cars {
     }
 
     public List<Car> getCarList() {
-        // 5. 외부에서 리스트를 수정할 수 없도록 불변 리스트(unmodifiable)로 반환
         return Collections.unmodifiableList(carList);
+    }
+
+    public List<String> getWinnerNames() {
+        int maxPosition = findMaxPosition();
+
+        return carList.stream() // carList를 스트림으로 변환
+                .filter(car -> car.getPosition() == maxPosition) // 최대 위치와 같은 Car만 필터링
+                .map(Car::getName) // Car 객체를 이름(String)으로 변환
+                .collect(Collectors.toList()); // 리스트로 수집
+    }
+
+
+    private int findMaxPosition() {
+        int maxPosition = 0;
+        for (Car car : carList) {
+            if (car.getPosition() > maxPosition) {
+                maxPosition = car.getPosition();
+            }
+        }
+        return maxPosition;
     }
 }

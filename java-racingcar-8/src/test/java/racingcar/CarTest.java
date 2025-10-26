@@ -112,6 +112,41 @@ public class CarTest {
         assertThat(carList.get(1).getPosition()).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("가장 멀리 전진한 자동차가 단독 우승한다.")
+    void findWinners_SingleWinner() {
+        // given (준비)
+        Cars cars = new Cars("pobi,woni");
+
+        // pobi: 1 (전진), woni: 0 (정지)
+        assertRandomNumberInRangeTest(() -> {
+            cars.playRound();
+        }, 4, 3);
+
+        // when (실행)
+        List<String> winners = cars.getWinnerNames();
+
+        // then (검증)
+        assertThat(winners).containsExactly("pobi");
+    }
+
+    @Test
+    @DisplayName("가장 멀리 전진한 자동차가 여러 대일 경우 공동 우승한다.")
+    void findWinners_JointWinners() {
+        // given (준비)
+        Cars cars = new Cars("pobi,woni,jun");
+
+        // pobi: 1 (전진), woni: 0 (정지), jun: 1 (전진)
+        assertRandomNumberInRangeTest(() -> {
+            cars.playRound();
+        }, 4, 3, 4);
+
+        // when (실행)
+        List<String> winners = cars.getWinnerNames();
+
+        // then (검증)
+        assertThat(winners).containsExactly("pobi", "jun");
+    }
 
 
 }
