@@ -93,4 +93,25 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
+    @Test
+    @DisplayName("1회(라운드) 실행 시 모든 자동차가 각자의 move()를 호출한다.")
+    void playOneRound() {
+        // given (준비)
+        Cars cars = new Cars("pobi,woni");
+
+        assertRandomNumberInRangeTest(() -> {
+            cars.playRound();
+        }, 4, 3);
+
+        // then (검증)
+        List<Car> carList = cars.getCarList();
+        // pobi는 1칸 전진했는지 확인
+        assertThat(carList.get(0).getPosition()).isEqualTo(1);
+        // woni는 0칸 (정지)했는지 확인
+        assertThat(carList.get(1).getPosition()).isEqualTo(0);
+    }
+
+
+
 }

@@ -30,6 +30,12 @@ public class Cars {
         }
     }
 
+    public void playRound() {
+        for (Car car : carList) {
+            car.move();
+        }
+    }
+
     public List<Car> getCarList() {
         // 5. 외부에서 리스트를 수정할 수 없도록 불변 리스트(unmodifiable)로 반환
         return Collections.unmodifiableList(carList);
