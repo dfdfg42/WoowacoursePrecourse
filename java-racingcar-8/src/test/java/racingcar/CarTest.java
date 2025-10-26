@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 // 2. AssertJ의 assertThat을 import 합니다.
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 // 3. extends NsTest를 쓰지 않습니다. (중요)
 public class CarTest {
@@ -54,6 +55,15 @@ public class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 5자를 초과하면 예외 발생")
+    void carName_OverFive(){
+        String longName = "pobipobi";
+
+        assertThatThrownBy(() -> new Car(longName))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
