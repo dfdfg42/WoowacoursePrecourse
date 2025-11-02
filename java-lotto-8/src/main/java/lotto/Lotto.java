@@ -53,4 +53,9 @@ public class Lotto {
                 .filter(otherLotto.getNumbers()::contains)
                 .count();
     }
+
+    public boolean hasBonusNumber(int number) {
+        return this.numbers.stream()
+                .anyMatch(n -> n == number);
+    }
 }

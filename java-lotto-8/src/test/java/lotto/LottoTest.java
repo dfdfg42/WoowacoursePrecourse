@@ -70,4 +70,31 @@ class LottoTest {
         assertThat(matchCount).isEqualTo(3);
     }
 
+    @DisplayName("보너스 번호 포함 여부 확인(있는경우)")
+    @Test
+    void 로또가_보너스_번호를_포함하는지_확인(){
+
+        //given
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        int bonusNumber = 6;
+
+        //when
+        boolean hasBonusNumber = lotto.hasBonusNumber(6);
+
+        assertThat(hasBonusNumber).isTrue();
+    }
+
+    @DisplayName("보너스 번호 포함 여부 (없는경우)")
+    @Test
+    void 로또가_보너스_번호가_없는지_확인(){
+        //given
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        int bonusNumber = 10;
+
+        //when
+        boolean hasBonusNumber = lotto.hasBonusNumber(10);
+
+        assertThat(hasBonusNumber).isFalse();
+    }
+
 }
