@@ -25,7 +25,7 @@ class LottoTest {
     @Test
     void 로또_번호가_45_를_벗어나면_예외가_발생한다(){
         //given 준비
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 46);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
 
         //when then
         assertThatThrownBy(() -> new Lotto(numbers))
@@ -36,7 +36,7 @@ class LottoTest {
     @Test
     void 로또_번호가_0_를_벗어나면_예외가_발생한다(){
         //given 준비
-        List<Integer> numbers = List.of(0, 2, 3, 4, 5, 6, 7);
+        List<Integer> numbers = List.of(0, 2, 3, 4, 5, 6);
 
         //when then
         assertThatThrownBy(() -> new Lotto(numbers))
