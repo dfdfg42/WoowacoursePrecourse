@@ -54,8 +54,20 @@ class LottoTest {
 
         assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
 
+    }
 
+    @DisplayName("당첨 번호와 일치하는 개수를 반환")
+    @Test
+    void 로또_번호와_당첨번호의_일치하는개수_반환(){
+        //given
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        Lotto winningLotto = new Lotto(List.of(4, 5, 6, 7, 8, 9));
 
+        //when 실행
+
+        int matchCount = lotto.matchNumber(winningLotto);
+
+        assertThat(matchCount).isEqualTo(3);
     }
 
 }

@@ -47,4 +47,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    public int matchNumber(Lotto otherLotto) {
+        return (int) this.numbers.stream()
+                .filter(otherLotto.getNumbers()::contains)
+                .count();
+    }
 }
