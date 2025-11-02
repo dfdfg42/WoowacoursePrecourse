@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -13,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,9 +30,21 @@ public class Lotto {
     }
 
 
+
+
     private void validateRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는" + MIN_NUMBER + "부터 " + MAX_NUMBER + "사이의 숫자여야 합니다");
         }
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sorted = new ArrayList<>(numbers);
+        Collections.sort(sorted);
+        return sorted;
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 }
