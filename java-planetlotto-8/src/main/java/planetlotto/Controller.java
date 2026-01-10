@@ -1,6 +1,8 @@
 package planetlotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import planetlotto.domain.BonusNumber;
+import planetlotto.domain.Lotto;
 import planetlotto.domain.WinningLotto;
 import planetlotto.view.InputView;
 
@@ -17,12 +19,18 @@ public class Controller {
         while (true) {
             try {
 
+
+                //구매 금액 입력
                 inputView.askAmount();
                 String input = Console.readLine();
                 Purchase purchaseAmount = inputPurchaseAmount();
 
+                //당첨 번호 입력
                 inputView.askWinningLotto();
                 WinningLotto winningLotto = inputWinningLotto();
+
+                inputView.askBonusNumber();
+                BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto());
 
 
 
@@ -46,11 +54,21 @@ public class Controller {
     }
 
     private static WinningLotto inputWinningLotto() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
         while (true) {
             try {
                 String input = Console.readLine();
                 return new WinningLotto(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static BonusNumber inputBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                return new BonusNumber(input, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
