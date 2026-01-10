@@ -26,7 +26,7 @@ public class Controller {
             try {
 
                 //구매 금액 입력
-                Purchase purchaseAmount = inputPurchaseAmount(inputView);
+                Purchase purchaseAmount = inputPurchaseAmount(inputView,outputView);
 
                 //로또 구매
                 LottoGenerator generator = new LottoGenerator();
@@ -34,11 +34,11 @@ public class Controller {
                 printPurchasedLottos(purchasedLottos);
 
                 //당첨 번호 입력
-                WinningLotto winningLotto = inputWinningLotto(inputView);
+                WinningLotto winningLotto = inputWinningLotto(inputView,outputView);
 
                 //보너스 번호 입력
 
-                BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto(),inputView);
+                BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto(),inputView,outputView);
 
 
                 //당첨 결과 저장
@@ -50,46 +50,45 @@ public class Controller {
                 hashMap.put(3, rankCounts.get(Rank.THIRD));
                 hashMap.put(4, rankCounts.get(Rank.FOURTH));
                 hashMap.put(5, rankCounts.get(Rank.FIFTH));
-                OutputView.printResult(hashMap);
-
+                outputView.printResult(hashMap);
 
 
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-                throw e;
+
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private static Purchase inputPurchaseAmount(InputView inputView) {
+    private static Purchase inputPurchaseAmount(InputView inputView,OutputView outputView) {
         while (true) {
             try {
                 int input = inputView.askAmount();
                 return new Purchase(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private static WinningLotto inputWinningLotto(InputView inputView) {
+    private static WinningLotto inputWinningLotto(InputView inputView,OutputView outputView) {
         while (true) {
             try {
                 List<Integer> numbers = inputView.askWinningLotto();
                 return new WinningLotto(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private static BonusNumber inputBonusNumber(Lotto winningLotto,InputView inputView) {
+    private static BonusNumber inputBonusNumber(Lotto winningLotto,InputView inputView ,OutputView outputView) {
         while (true) {
             try {
                 int input = inputView. askBonusNumber();
                 return new BonusNumber(input, winningLotto);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
