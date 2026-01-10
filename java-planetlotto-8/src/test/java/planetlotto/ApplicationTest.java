@@ -1,6 +1,7 @@
 package planetlotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,5 +47,19 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+    @Test
+    @DisplayName("유효한 금액(500원 단위)으로 Purchase 객체를 생성한다.")
+    void 유효한_금액으로_Purchase_객체_생성() {
+        // given
+        String input = "3000";
+
+        // when
+        Purchase purchase = new Purchase(input);
+
+        // then
+        assertThat(purchase.getAmountAsInt()).isEqualTo(3000);
+        assertThat(purchase.getLottoCount()).isEqualTo(6); // 3000원 = 3장
     }
 }

@@ -21,6 +21,8 @@ public class Controller {
                 Purchase purchaseAmount = inputPurchaseAmount();
 
 
+                System.out.println(purchaseAmount);
+
 
 
 
