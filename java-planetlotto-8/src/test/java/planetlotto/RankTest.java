@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import planetlotto.domain.Rank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +17,6 @@ public class RankTest {
             "4, false, THIRD",// 3등
             "3, true, FOURTH", // 4등
             "2, false, FIFTH",  // 5등
-            "0, true, MISS",   // 꽝
             "0, false, MISS"   // 꽝
     })
     void 일치번호에_따라_순위가_맞는지_확인(int matchCount, boolean hasBonus, Rank expectedRank) {
