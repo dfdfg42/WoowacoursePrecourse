@@ -44,7 +44,7 @@ public class Controller {
                 //당첨 결과 저장
                 Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
                 Map<Rank, Integer> rankCounts = stats.getRankCounts();
-                HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+                HashMap<Integer, Integer> hashMap = new HashMap<>();
                 hashMap.put(1, rankCounts.get(Rank.FIRST));
                 hashMap.put(2, rankCounts.get(Rank.SECOND));
                 hashMap.put(3, rankCounts.get(Rank.THIRD));
