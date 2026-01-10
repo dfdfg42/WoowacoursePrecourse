@@ -7,34 +7,49 @@ import planetlotto.domain.Statistics;
 import planetlotto.domain.WinningLotto;
 import planetlotto.service.LottoGenerator;
 import planetlotto.view.InputView;
+import planetlotto.view.OutputView;
+
+import java.util.List;
 
 public class Controller {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
 
-    public Controller(InputView inputView ) {
+    public Controller(InputView inputView , OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         while (true) {
             try {
 
-                LottoGenerator generator = new LottoGenerator();
+
 
                 //구매 금액 입력
                 inputView.askAmount();
                 String input = Console.readLine();
                 Purchase purchaseAmount = inputPurchaseAmount();
 
+                //로또 구매
+                LottoGenerator generator = new LottoGenerator();
+                List<Lotto> purchasedLottos = generator.purchaseLottos(purchaseAmount);
+                printPurchasedLottos(purchasedLottos);
+
                 //당첨 번호 입력
                 inputView.askWinningLotto();
                 WinningLotto winningLotto = inputWinningLotto();
 
+                //보너스 번호 입력
                 inputView.askBonusNumber();
                 BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto());
 
+
+                //당첨 결과 저장
+                Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
+                outputView.printResult(stats.getRankCounts());
 
 
             } catch (IllegalArgumentException e) {
@@ -74,6 +89,13 @@ public class Controller {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void printPurchasedLottos(List<Lotto> lottos) {
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 }
