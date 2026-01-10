@@ -19,7 +19,7 @@ public class Lotto {
         }
 
         Set<Integer> numbersSet = new HashSet<>(numbers);
-        if(numbersSet.size() != 6) {
+        if(numbersSet.size() != 5) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있을 수 없습니다.");
         }
 
@@ -42,6 +42,17 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public int matchNumber(Lotto otherLotto) {
+        return (int) this.numbers.stream()
+                .filter(otherLotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean hasBonusNumber(int number) {
+        return this.numbers.stream()
+                .anyMatch(n -> n == number);
     }
 
 }
