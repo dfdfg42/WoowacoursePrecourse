@@ -6,8 +6,8 @@ public class Purchase {
     private final int amount;
 
 
-    public Purchase(String input) {
-        int parsedAmount = validateNumber(input);
+    public Purchase(int input) {
+        int parsedAmount = input;
         validateAmount(parsedAmount);
 
         this.amount = parsedAmount;

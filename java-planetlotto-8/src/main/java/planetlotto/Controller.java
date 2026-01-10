@@ -26,12 +26,8 @@ public class Controller {
         while (true) {
             try {
 
-
-
                 //구매 금액 입력
-                inputView.askAmount();
-                String input = Console.readLine();
-                Purchase purchaseAmount = inputPurchaseAmount();
+                Purchase purchaseAmount = inputPurchaseAmount(inputView);
 
                 //로또 구매
                 LottoGenerator generator = new LottoGenerator();
@@ -48,21 +44,21 @@ public class Controller {
 
 
                 //당첨 결과 저장
-                Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
-                outputView.printResult(stats.getRankCounts());
+//                Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
+//                outputView.printResult(stats.getRankCounts());
 
 
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
                 throw e;
             }
         }
     }
 
-    private static Purchase inputPurchaseAmount() {
+    private static Purchase inputPurchaseAmount(InputView inputView) {
         while (true) {
             try {
-                String input = Console.readLine();
+                int input = inputView.askAmount();
                 return new Purchase(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

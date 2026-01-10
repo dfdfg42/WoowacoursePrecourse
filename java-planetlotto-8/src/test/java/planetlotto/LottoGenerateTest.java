@@ -15,7 +15,7 @@ public class LottoGenerateTest {
     @Test
     @DisplayName("구매 금액만큼 로또 발매")
     void 로또_구매_확인(){
-        Purchase purchase = new Purchase("1500"); //3장
+        Purchase purchase = new Purchase(1500); //3장
         LottoGenerator generator = new LottoGenerator();
 
         // when (실행)
