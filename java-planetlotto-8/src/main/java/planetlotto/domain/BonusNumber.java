@@ -7,9 +7,9 @@ public class BonusNumber {
     private final int number;
 
 
-    public BonusNumber(String input, Lotto winningLotto) {
+    public BonusNumber(Integer input, Lotto winningLotto) {
 
-        int parsedNumber = validateNumber(input);
+        int parsedNumber = input;
 
         validateRange(parsedNumber);
 

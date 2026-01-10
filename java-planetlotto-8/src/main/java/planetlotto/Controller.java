@@ -39,7 +39,7 @@ public class Controller {
 
                 //보너스 번호 입력
 
-                BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto());
+                BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto(),inputView);
 
 
                 //당첨 결과 저장
@@ -76,10 +76,10 @@ public class Controller {
         }
     }
 
-    private static BonusNumber inputBonusNumber(Lotto winningLotto) {
+    private static BonusNumber inputBonusNumber(Lotto winningLotto,InputView inputView) {
         while (true) {
             try {
-                String input = Console.readLine();
+                int input = inputView. askBonusNumber();
                 return new BonusNumber(input, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
