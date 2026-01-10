@@ -7,8 +7,8 @@ public class WinningLotto {
     private final Lotto lotto;
 
 
-    public WinningLotto(String input) {
-        List<Integer> numbers = parseNumbers(input);
+    public WinningLotto(List<Integer> input) {
+        List<Integer> numbers = input;
 
         this.lotto = new Lotto(numbers);
     }

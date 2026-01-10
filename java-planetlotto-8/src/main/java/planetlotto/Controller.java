@@ -35,11 +35,10 @@ public class Controller {
                 printPurchasedLottos(purchasedLottos);
 
                 //당첨 번호 입력
-                inputView.askWinningLotto();
-                WinningLotto winningLotto = inputWinningLotto();
+                WinningLotto winningLotto = inputWinningLotto(inputView);
 
                 //보너스 번호 입력
-                inputView.askBonusNumber();
+
                 BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto());
 
 
@@ -66,11 +65,11 @@ public class Controller {
         }
     }
 
-    private static WinningLotto inputWinningLotto() {
+    private static WinningLotto inputWinningLotto(InputView inputView) {
         while (true) {
             try {
-                String input = Console.readLine();
-                return new WinningLotto(input);
+                List<Integer> numbers = inputView.askWinningLotto();
+                return new WinningLotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

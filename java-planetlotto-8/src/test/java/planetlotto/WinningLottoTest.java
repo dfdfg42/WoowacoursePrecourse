@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import planetlotto.domain.Lotto;
 import planetlotto.domain.WinningLotto;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningLottoTest {
@@ -13,7 +15,7 @@ public class WinningLottoTest {
     @DisplayName("당첨 로또 생성.")
     void 당첨_로또_생성() {
         // given
-        String input = "1,2,3,4,5";
+        List<Integer> input = List.of(1,2,3,4,5);
 
         // when
         WinningLotto winningLotto = new WinningLotto(input);
