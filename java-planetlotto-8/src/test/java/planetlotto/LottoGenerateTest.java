@@ -2,6 +2,8 @@ package planetlotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import planetlotto.domain.Lotto;
+import planetlotto.service.LottoGenerator;
 
 import java.util.List;
 
