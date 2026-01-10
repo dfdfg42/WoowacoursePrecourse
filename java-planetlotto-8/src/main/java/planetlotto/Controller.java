@@ -1,15 +1,14 @@
 package planetlotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import planetlotto.domain.BonusNumber;
-import planetlotto.domain.Lotto;
-import planetlotto.domain.Statistics;
-import planetlotto.domain.WinningLotto;
+import planetlotto.domain.*;
 import planetlotto.service.LottoGenerator;
 import planetlotto.view.InputView;
 import planetlotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -43,8 +42,16 @@ public class Controller {
 
 
                 //당첨 결과 저장
-//                Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
-//                outputView.printResult(stats.getRankCounts());
+                Statistics stats = new Statistics(purchasedLottos, winningLotto.getLotto(), bonusNumber.getNumber());
+                Map<Rank, Integer> rankCounts = stats.getRankCounts();
+                HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+                hashMap.put(1, rankCounts.get(Rank.FIRST));
+                hashMap.put(2, rankCounts.get(Rank.SECOND));
+                hashMap.put(3, rankCounts.get(Rank.THIRD));
+                hashMap.put(4, rankCounts.get(Rank.FOURTH));
+                hashMap.put(5, rankCounts.get(Rank.FIFTH));
+                OutputView.printResult(hashMap);
+
 
 
             } catch (IllegalArgumentException e) {
@@ -92,5 +99,19 @@ public class Controller {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    private static void printStatistics(Statistics stats) {
+        Map<Rank, Integer> rankCounts = stats.getRankCounts();
+
+        System.out.println("\"당첨 통계\"");
+
+        System.out.printf("3개 일치 (%,d원) - %d개\n", Rank.FIFTH.getPrizeMoney(), rankCounts.get(Rank.FIFTH));
+        System.out.printf("4개 일치 (%,d원) - %d개\n", Rank.FOURTH.getPrizeMoney(), rankCounts.get(Rank.FOURTH));
+        System.out.printf("5개 일치 (%,d원) - %d개\n", Rank.THIRD.getPrizeMoney(), rankCounts.get(Rank.THIRD));
+        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", Rank.SECOND.getPrizeMoney(), rankCounts.get(Rank.SECOND));
+        System.out.printf("6개 일치 (%,d원) - %d개\n", Rank.FIRST.getPrizeMoney(), rankCounts.get(Rank.FIRST));
+
+
     }
 }

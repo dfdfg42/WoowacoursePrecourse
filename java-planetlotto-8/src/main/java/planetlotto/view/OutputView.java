@@ -1,5 +1,7 @@
 package planetlotto.view;
 
+import planetlotto.domain.Rank;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
