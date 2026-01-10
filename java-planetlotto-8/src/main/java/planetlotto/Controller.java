@@ -3,6 +3,7 @@ package planetlotto;
 import camp.nextstep.edu.missionutils.Console;
 import planetlotto.domain.BonusNumber;
 import planetlotto.domain.Lotto;
+import planetlotto.domain.Statistics;
 import planetlotto.domain.WinningLotto;
 import planetlotto.view.InputView;
 
@@ -31,7 +32,6 @@ public class Controller {
 
                 inputView.askBonusNumber();
                 BonusNumber bonusNumber = inputBonusNumber(winningLotto.getLotto());
-
 
 
 
