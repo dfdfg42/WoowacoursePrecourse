@@ -5,6 +5,7 @@ import planetlotto.domain.BonusNumber;
 import planetlotto.domain.Lotto;
 import planetlotto.domain.Statistics;
 import planetlotto.domain.WinningLotto;
+import planetlotto.service.LottoGenerator;
 import planetlotto.view.InputView;
 
 public class Controller {
@@ -20,6 +21,7 @@ public class Controller {
         while (true) {
             try {
 
+                LottoGenerator generator = new LottoGenerator();
 
                 //구매 금액 입력
                 inputView.askAmount();
